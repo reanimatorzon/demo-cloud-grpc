@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: time-server
+  namespace: time-app
   labels:
     app: time-server
 spec:
@@ -26,6 +27,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: time-server
+  namespace: time-app
 spec:
   selector:
     app: time-server
