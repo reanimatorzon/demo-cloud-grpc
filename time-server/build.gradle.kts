@@ -1,5 +1,5 @@
 plugins {
-    id("kotlin-and-spring")
+    id("kotlin.and.spring")
     id("jib")
 }
 
