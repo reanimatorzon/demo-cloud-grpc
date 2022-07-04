@@ -13,11 +13,13 @@
             app: deployment.metadata.name,
           },
           ports: [{ // FIXME
+            name: 'http',
             port: std.parseInt(deployment.metadata.annotations.httpServicePort),
-            targetPort: deployment.spec.template.spec.containers[0].ports[0].containerPort,
+            targetPort: 8080,
           }, { // FIXME
-            port: std.parseInt(deployment.metadata.annotations.httpServicePort),
-            targetPort: deployment.spec.template.spec.containers[0].ports[1].containerPort,
+            name: 'grpc',
+            port: std.parseInt(deployment.metadata.annotations.grpcServicePort),
+            targetPort: 6565,
           }],
           type: 'LoadBalancer',
         },

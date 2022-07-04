@@ -1,5 +1,7 @@
 package com.example.timeserver
 
+import io.grpc.examples.*
+import org.lognet.springboot.grpc.GRpcService
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.web.bind.annotation.GetMapping
@@ -26,4 +28,13 @@ class CurrentTime {
         TimeZone.getDefault().toZoneId()
     )
 
+}
+
+@GRpcService
+class TimeGrpc: ClockGrpcKt.ClockCoroutineImplBase() {
+
+    override suspend fun currentTime(request: Hello.CurrentTimeRequest): Hello.CurrentTimeResponse =
+        Hello.CurrentTimeResponse.newBuilder()
+            .setMs(System.currentTimeMillis().toString())
+            .build()
 }

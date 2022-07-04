@@ -33,9 +33,9 @@
                 name: name,
                 image: '%s/%s:%s' % [registryUrl, name, version],
                 ports: [{
-                  containerPort: $._defaultContainerPorts.http,
+                  containerPort: 8080,
                 }, {
-                  containerPort: $._defaultContainerPorts.grpc,
+                  containerPort: 6565,
                 }],
               }],
             },

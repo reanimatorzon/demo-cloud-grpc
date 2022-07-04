@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_package = "io.grpc.examples";
+
+service Clock {
+  rpc currentTime(CurrentTimeRequest) returns (CurrentTimeResponse) {}
+}
+
+message CurrentTimeRequest {
+}
+
+message CurrentTimeResponse {
+  string ms = 1;
+}
