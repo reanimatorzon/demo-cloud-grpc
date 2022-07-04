@@ -1,5 +1,6 @@
 // Certs created like that - https://gist.github.com/cecilemuller/9492b848eb8fe46d462abeb26656c4f8
 // Then - https://istio.io/latest/docs/tasks/traffic-management/ingress/secure-ingress/
+// $ kubectl create -n istio-system secret tls localhost-crt --key=localhost.key --cert=localhost.crt
 // The secret named `localhost-cer`
 {
   httpsGateway: {

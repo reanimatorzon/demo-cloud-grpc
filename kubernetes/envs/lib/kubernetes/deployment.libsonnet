@@ -1,7 +1,7 @@
 {
   k+:: {
     deployment: {
-      new(ns, registryUrl, name, version, replicas=1): {
+      new(ns, registryUrl, name, version, servicePorts={}, replicas=1): {
         apiVersion: 'apps/v1',
         kind: 'Deployment',
         metadata: {
@@ -9,6 +9,10 @@
           namespace: ns.metadata.name,
           labels: {
             app: name,
+          },
+          annotations: {
+            httpServicePort: '%s' % servicePorts.http,
+            grpcServicePort: '%s' % servicePorts.grpc
           },
         },
         spec: {
@@ -29,7 +33,9 @@
                 name: name,
                 image: '%s/%s:%s' % [registryUrl, name, version],
                 ports: [{
-                  containerPort: 8080,
+                  containerPort: $._defaultContainerPorts.http,
+                }, {
+                  containerPort: $._defaultContainerPorts.grpc,
                 }],
               }],
             },
